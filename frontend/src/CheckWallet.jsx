@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Home from './Home';
+import {toast} from 'react-toastify'
 
 function CheckWallet() {
     const [currentAccount, setCurrentAccount] = useState(null);

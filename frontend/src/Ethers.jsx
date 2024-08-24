@@ -1,5 +1,6 @@
 import { ethers } from 'ethers';
 import { contractAddress, contractABI } from './config';
+import {toast} from 'react-toastify'
 
 function Ethers() {
     if(!window.ethereum) toast.info("Please install Metamask");
