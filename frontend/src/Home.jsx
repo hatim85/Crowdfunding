@@ -1,13 +1,13 @@
-import { ethers } from 'ethers';
 import React, { useState } from 'react';
+import { ethers } from 'ethers';
 import Ethers from './Ethers';
 import '../stylesheets/Home.css';
 import { toast } from 'react-toastify';
+import Loading from './components/Loading';
 
 function Home() {
     const [goal, setGoal] = useState('');
     const [duration, setDuration] = useState('');
-    const [createCampaignId, setCreateCampaignId] = useState('');
     const [pledgeCampaignId, setPledgeCampaignId] = useState('');
     const [withdrawCampaignId, setWithdrawCampaignId] = useState('');
     const [claimCampaignId, setClaimCampaignId] = useState('');
@@ -91,6 +91,7 @@ function Home() {
 
     return (
         <div className="container">
+            {isLoading && <Loading />}
             <div>
                 <h2>Create Campaign</h2>
                 <form onSubmit={handleCreateCampaign}>

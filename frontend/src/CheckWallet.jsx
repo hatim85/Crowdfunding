@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Ethers from './Ethers'
 import Home from './Home';
 
 function CheckWallet() {
@@ -22,11 +21,22 @@ function CheckWallet() {
 
     const connectWallet = async () => {
         try {
-            if (!window.ethereum) return console.log("Please install metamask");
+            if (!window.ethereum) {
+                return toast.info("Please install MetaMask");
+            }
+    
             const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
-            setCurrentAccount(accounts[0])
+            const network = await window.ethereum.request({ method: "net_version" });
+    
+            // Sepolia network ID is '11155111'
+            if (network !== '11155111') {
+                return toast.info("Please switch to the Sepolia network");
+            }
+    
+            setCurrentAccount(accounts[0]);
+            toast.success("Connected to Sepolia network");
         } catch (error) {
-            console.log(error);
+            toast.error("Error in connecting wallet: ",error.message)
         }
     }
 
