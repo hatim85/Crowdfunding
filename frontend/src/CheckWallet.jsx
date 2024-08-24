@@ -6,7 +6,7 @@ function CheckWallet() {
 
     const checkIfWalletIsConnected = async () => {
         try {
-            if (!window.ethereum) return console.log("Please install metamask");
+            if (!window.ethereum) return toast.info("Please install metamask");
             const accounts = await window.ethereum.request({ method: "eth_accounts" });
             if (accounts.length) {
                 setCurrentAccount(accounts[0]);
